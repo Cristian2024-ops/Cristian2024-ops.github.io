@@ -4,16 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Web - Home</title>
-    <link rel="stylesheet" href="style.css"> <!-- Usaremos un CSS compartido -->
+    <style>
+        /* Estilos Globales - Manteniendo la línea del Admin */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: #f6f8fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #24292f;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid #d0d7de;
+            box-shadow: 0 8px 24px rgba(140, 149, 159, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 { 
+            font-size: 26px;
+            margin-bottom: 12px;
+            color: #1f2328;
+        }
+
+        p { 
+            font-size: 16px;
+            color: #57606a;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        /* Estilos de Botones */
+        .btn {
+            display: block;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        /* Botón Principal (Azul GitHub) */
+        .btn-primary {
+            background-color: #0969da;
+            color: white;
+            border: 1px solid rgba(27, 31, 36, 0.15);
+        }
+        .btn-primary:hover {
+            background-color: #0860ca;
+        }
+
+        /* Botón Secundario (Gris/Outline) */
+        .btn-outline {
+            background-color: #f6f8fa;
+            color: #24292f;
+            border: 1px solid #d0d7de;
+        }
+        .btn-outline:hover {
+            background-color: #f3f4f6;
+            border-color: #8c959f;
+        }
+    </style>
 </head>
 <body>
     <div class="card">
         <h1>🏠 Bienvenida</h1>
-        <p>Esta es la página principal de tu proyecto.</p>
+        <p>Gestiona tus proyectos y monitorea tus cuentas desde un solo lugar de forma segura.</p>
         <div class="buttons">
-            <a href="login.html" class="btn">Iniciar Sesión</a>
+            <a href="login.html" class="btn btn-primary">Iniciar Sesión</a>
             <a href="registrate.html" class="btn btn-outline">Crear Cuenta</a>
         </div>
     </div>
 </body>
-</html>
+    </html>
+    
