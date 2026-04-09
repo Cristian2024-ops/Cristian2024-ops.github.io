@@ -165,13 +165,13 @@
         <div class="divider">O continúa con</div>
 
         <div class="social-group">
-            <a href="#" class="btn-social" onclick="alert('Iniciando con Google...')">
+            <a href="#" class="btn-social" onclick="login('google-oauth2')">
                 <i class="fab fa-google"></i> Google
             </a>
-            <a href="#" class="btn-social" onclick="alert('Iniciando con GitHub...')">
+            <a href="#" class="btn-social" onclick="login('github')">
                 <i class="fab fa-github"></i> GitHub
             </a>
-            <a href="#" class="btn-social" onclick="alert('Iniciando con Discord...')">
+            <a href="#" class="btn-social" onclick="login('discord')">
                 <i class="fab fa-discord"></i> Discord
             </a>
         </div>
@@ -180,6 +180,43 @@
     <div class="footer-card">
         ¿No tienes cuenta? <a href="registrate.html">Regístrate ahora</a>.
     </div>
+
+    <script>
+        let auth0 = null;
+
+        // 1. Configuración de Auth0
+        async function initAuth0() {
+            auth0 = await createAuth0Client({
+                domain: "://auth0.com", // Tu dominio de la captura
+                client_id: "PON_AQUI_TU_CLIENT_ID_DE_AUTH0"   // El ID de tu APP en Auth0
+            });
+
+            // Manejar el regreso del login
+            const query = window.location.search;
+            if (query.includes("code=") && query.includes("state=")) {
+                await auth0.handleRedirectCallback();
+                window.history.replaceState({}, document.title, "/login.html");
+            }
+
+            // Si ya está logueado, redirigir al dashboard
+            const isAuthenticated = await auth0.isAuthenticated();
+            if (isAuthenticated) {
+                window.location.href = 'dashboard.html';
+            }
+        }
+
+        // 2. Función para los botones sociales
+        async function login(provider) {
+            await auth0.loginWithRedirect({
+                authorizationParams: {
+                    connection: provider, // 'github', 'google-oauth2' o 'discord'
+                    redirect_uri: "https://github.io"
+                }
+            });
+        }
+
+        window.onload = initAuth0;
+    </script>
 
 </body>
 </html>
