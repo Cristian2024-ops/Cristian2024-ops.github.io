@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Mi Web</title>
-    <!-- Iconos para los botones -->
+    <!-- Iconos corregidos -->
     <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- SDK de Auth0 (Obligatorio para que funcione el script) -->
+    <script src="https://auth0.com"></script>
+    
     <style>
         /* Base y Tipografía */
         body {
@@ -20,14 +23,8 @@
             color: #24292f;
         }
 
-        h1 {
-            font-size: 24px;
-            font-weight: 300;
-            letter-spacing: -0.5px;
-            margin-bottom: 20px;
-        }
+        h1 { font-size: 24px; font-weight: 300; letter-spacing: -0.5px; margin-bottom: 20px; }
 
-        /* Contenedor del Formulario */
         .card {
             background-color: white;
             border: 1px solid #d0d7de;
@@ -35,116 +32,39 @@
             padding: 20px;
             width: 300px;
             box-shadow: 0 8px 24px rgba(140, 149, 159, 0.1);
+            box-sizing: border-box; /* Asegura que el ancho sea exacto */
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        label {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: -10px;
-        }
-
-        input {
-            padding: 5px 12px;
-            font-size: 14px;
-            line-height: 20px;
-            color: #24292f;
-            background-color: #ffffff;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            outline: none;
-        }
-
-        input:focus {
-            border-color: #0969da;
-            box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3);
-        }
+        form { display: flex; flex-direction: column; gap: 15px; }
+        label { font-size: 14px; font-weight: 600; margin-bottom: -10px; }
+        input { padding: 5px 12px; font-size: 14px; line-height: 20px; color: #24292f; background-color: #ffffff; border: 1px solid #d0d7de; border-radius: 6px; outline: none; }
+        input:focus { border-color: #0969da; box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.3); }
 
         .btn-primary {
-            background-color: #2da44e;
-            color: white;
-            border: 1px solid rgba(27, 31, 36, 0.15);
-            padding: 6px 16px;
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background-color 0.2s;
+            background-color: #2da44e; color: white; border: 1px solid rgba(27, 31, 36, 0.15);
+            padding: 6px 16px; font-weight: 600; font-size: 14px; border-radius: 6px; cursor: pointer;
         }
 
-        .btn-primary:hover {
-            background-color: #2c974b;
-        }
-
-        /* --- NUEVOS ESTILOS: LOGIN SOCIAL --- */
-        .divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 15px 0;
-            color: #57606a;
-            font-size: 12px;
-        }
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid #d0d7de;
-        }
+        .divider { display: flex; align-items: center; text-align: center; margin: 15px 0; color: #57606a; font-size: 12px; }
+        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #d0d7de; }
         .divider:not(:empty)::before { margin-right: .5em; }
         .divider:not(:empty)::after { margin-left: .5em; }
 
-        .social-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
+        .social-group { display: flex; flex-direction: column; gap: 8px; }
         .btn-social {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 6px;
-            font-size: 13px;
-            font-weight: 500;
-            border-radius: 6px;
-            text-decoration: none;
-            color: #24292f;
-            border: 1px solid #d0d7de;
-            background-color: #ffffff;
-            transition: background-color 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px;
+            font-size: 13px; font-weight: 500; border-radius: 6px; text-decoration: none; color: #24292f;
+            border: 1px solid #d0d7de; background-color: #ffffff; cursor: pointer;
         }
-
         .btn-social:hover { background-color: #f3f4f6; }
         .fa-google { color: #DB4437; }
         .fa-github { color: #24292f; }
-        .fa-discord { color: #5865F2; }
 
-        /* Caja inferior para Registro */
         .footer-card {
-            margin-top: 15px;
-            padding: 15px;
-            text-align: center;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            width: 310px; /* Ajustado para alinear con padding de la card */
-            font-size: 14px;
+            margin-top: 15px; padding: 15px; text-align: center; border: 1px solid #d0d7de;
+            border-radius: 6px; width: 300px; font-size: 14px; box-sizing: border-box;
         }
-
-        .footer-card a {
-            color: #0969da;
-            text-decoration: none;
-        }
-
-        .footer-card a:hover {
-            text-decoration: underline;
-        }
+        .footer-card a { color: #0969da; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -152,28 +72,23 @@
     <h1>🔐 Ingresar</h1>
 
     <div class="card">
-        <form onsubmit="window.location.href='dashboard.html'; return false;">
+        <form onsubmit="alert('Esta función requiere backend. Usa los botones de abajo.'); return false;">
             <label>Correo electrónico</label>
-            <input type="email" required>
-            
+            <input type="email" placeholder="nombre@ejemplo.com" required>
             <label>Contraseña</label>
             <input type="password" required>
-            
             <button type="submit" class="btn-primary">Entrar</button>
         </form>
 
         <div class="divider">O continúa con</div>
 
         <div class="social-group">
-            <a href="#" class="btn-social" onclick="login('google-oauth2')">
+            <button class="btn-social" onclick="login('google-oauth2')">
                 <i class="fab fa-google"></i> Google
-            </a>
-            <a href="#" class="btn-social" onclick="login('github')">
+            </button>
+            <button class="btn-social" onclick="login('github')">
                 <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="#" class="btn-social" onclick="login('discord')">
-                <i class="fab fa-discord"></i> Discord
-            </a>
+            </button>
         </div>
     </div>
 
@@ -184,32 +99,30 @@
     <script>
         let auth0 = null;
 
-        // 1. Configuración de Auth0
+        // 1. Configuración con tus datos reales
         async function initAuth0() {
             auth0 = await createAuth0Client({
-                domain: "://auth0.com", // Tu dominio de la captura
-                client_id: "dnP3foqFuc4OAaWe2LNst79GIUYH5qd5"   // El ID de tu APP en Auth0
+                domain: "dev-2i7nz3hw5y4ob0yb.us.auth0.com", // Tu dominio real
+                clientId: "dnP3foqFuc4OAaWe2LNst79GIUYH5qd5"   // Tu ID real
             });
 
-            // Manejar el regreso del login
             const query = window.location.search;
             if (query.includes("code=") && query.includes("state=")) {
                 await auth0.handleRedirectCallback();
-                window.history.replaceState({}, document.title, "/login.html");
+                window.location.href = 'https://github.io';
             }
 
-            // Si ya está logueado, redirigir al dashboard
             const isAuthenticated = await auth0.isAuthenticated();
             if (isAuthenticated) {
-                window.location.href = 'dashboard.html';
+                window.location.href = 'https://github.io';
             }
         }
 
-        // 2. Función para los botones sociales
+        // 2. Función corregida para redirigir a tu GitHub Pages
         async function login(provider) {
             await auth0.loginWithRedirect({
                 authorizationParams: {
-                    connection: provider, // 'github', 'google-oauth2' o 'discord'
+                    connection: provider,
                     redirect_uri: "https://github.io"
                 }
             });
@@ -217,6 +130,5 @@
 
         window.onload = initAuth0;
     </script>
-
 </body>
 </html>
