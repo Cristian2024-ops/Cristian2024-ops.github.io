@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Mi Web</title>
-    <!-- FontAwesome corregido -->
+    <!-- FontAwesome para los iconos -->
     <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- SDK de Auth0 -->
+    <!-- SDK de Auth0 oficial -->
     <script src="https://auth0.com"></script>
     <style>
         /* Estilos Globales Compartidos */
@@ -62,7 +62,11 @@
             border-radius: 6px;
             cursor: pointer;
             margin-top: 10px;
+            border: none;
+            transition: 0.2s;
         }
+
+        .btn-submit:hover { background-color: #2c974b; }
 
         .divider {
             display: flex; align-items: center; text-align: center;
@@ -78,7 +82,7 @@
             display: flex; align-items: center; justify-content: center; gap: 10px;
             padding: 8px; font-size: 14px; font-weight: 500; border-radius: 6px;
             text-decoration: none; color: #24292f; border: 1px solid #d0d7de;
-            background-color: #ffffff; cursor: pointer;
+            background-color: #ffffff; cursor: pointer; transition: 0.2s;
         }
         .btn-social:hover { background-color: #f3f4f6; }
 
@@ -93,7 +97,8 @@
     <div class="card">
         <h1>📝 Crear cuenta</h1>
         
-        <form onsubmit="alert('Para registro con email necesitas configurar el Database Connection en Auth0. ¡Prueba los botones sociales!'); return false;">
+        <!-- Al enviar este formulario, te lleva a la pantalla de registro real de Auth0 -->
+        <form onsubmit="handleAuth0Signup(event)">
             <label>Nombre completo</label>
             <input type="text" placeholder="Ej: Octocat" required>
             <label>Correo electrónico</label>
@@ -122,19 +127,32 @@
     <script>
         let auth0 = null;
 
+        // Configuración real con tus datos
         async function initAuth0() {
             auth0 = await createAuth0Client({
-                domain: "://auth0.com",
+                domain: "dev-2i7nz3hw5y4ob0yb.us.auth0.com",
                 clientId: "dnP3foqFuc4OAaWe2LNst79GIUYH5qd5"
             });
         }
 
+        // Función para el botón verde (Registro por email)
+        async function handleAuth0Signup(event) {
+            event.preventDefault();
+            await auth0.loginWithRedirect({
+                authorizationParams: {
+                    screen_hint: "signup", // Esto fuerza la pantalla de REGISTRO
+                    redirect_uri: "https://github.io"
+                }
+            });
+        }
+
+        // Función para los botones sociales
         async function signup(provider) {
             await auth0.loginWithRedirect({
                 authorizationParams: {
                     connection: provider,
-                    redirect_uri: "https://github.io",
-                    screen_hint: "signup" // Esto le indica a Auth0 que muestre la pantalla de registro
+                    screen_hint: "signup",
+                    redirect_uri: "https://github.io"
                 }
             });
         }
