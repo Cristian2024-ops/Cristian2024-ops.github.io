@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel de Administración - GitHub Style</title>
+  <!-- SDK de Auth0 -->
+  <script src="https://auth0.com"></script>
   <style>
     /* Estilos Base */
     body {
@@ -26,100 +28,45 @@
       box-shadow: 0 4px 20px rgba(0,0,0,0.05);
       width: 90%;
       max-width: 800px;
+      display: none; /* Se muestra solo al cargar el usuario */
     }
 
-    h1 { 
-      font-size: 24px;
-      margin-bottom: 8px;
-      color: #1f2328;
-    }
+    #loading { font-size: 14px; color: #57606a; }
 
-    p { 
-      color: #636e72;
-      margin-bottom: 24px;
-    }
+    h1 { font-size: 24px; margin-bottom: 8px; color: #1f2328; }
+    p { color: #636e72; margin-bottom: 24px; }
 
     /* Estilos de la Tabla */
-    .table-container {
-      overflow-x: auto;
-      margin-bottom: 20px;
-    }
+    .table-container { overflow-x: auto; margin-bottom: 20px; }
+    .user-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+    .user-table th { background-color: #f6f8fa; padding: 12px; border: 1px solid #d0d7de; color: #57606a; font-weight: 600; }
+    .user-table td { padding: 12px; border: 1px solid #d0d7de; vertical-align: middle; }
+    .user-table tr:hover { background-color: #fcfcfc; }
 
-    .user-table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-      font-size: 14px;
-    }
-
-    .user-table th {
-      background-color: #f6f8fa;
-      padding: 12px;
-      border: 1px solid #d0d7de;
-      color: #57606a;
-      font-weight: 600;
-    }
-
-    .user-table td {
-      padding: 12px;
-      border: 1px solid #d0d7de;
-      vertical-align: middle;
-    }
-
-    .user-table tr:hover {
-      background-color: #fcfcfc;
-    }
+    /* Avatar en la tabla */
+    .user-cell { display: flex; align-items: center; gap: 10px; }
+    .avatar-mini { width: 24px; height: 24px; border-radius: 50%; border: 1px solid #d0d7de; }
 
     /* Etiquetas de Estado */
-    .status-badge {
-      padding: 3px 10px;
-      border-radius: 2em;
-      font-size: 12px;
-      font-weight: 500;
-      border: 1px solid transparent;
-    }
-
-    .status-active { 
-      background: #dafbe1; 
-      color: #1a7f37;
-      border-color: rgba(26, 127, 55, 0.2);
-    }
-
-    .status-pending { 
-      background: #fff8c5; 
-      color: #9a6700;
-      border-color: rgba(154, 103, 0, 0.2);
-    }
+    .status-badge { padding: 3px 10px; border-radius: 2em; font-size: 12px; font-weight: 500; border: 1px solid transparent; }
+    .status-active { background: #dafbe1; color: #1a7f37; border-color: rgba(26, 127, 55, 0.2); }
+    .status-pending { background: #fff8c5; color: #9a6700; border-color: rgba(154, 103, 0, 0.2); }
 
     /* Botones */
-    .btn {
-      display: inline-block;
-      padding: 6px 16px;
-      background-color: #0984e3;
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      border-radius: 6px;
-      transition: background 0.2s;
-    }
+    .btn { display: inline-block; padding: 6px 16px; background-color: #0984e3; color: white; text-decoration: none; font-weight: 600; font-size: 14px; border-radius: 6px; cursor: pointer; border: none; }
+    .btn-logout { background-color: #f6f8fa; color: #cf222e; border: 1px solid #d0d7de; margin-left: 10px; }
+    .btn-logout:hover { background-color: #cf222e; color: white; }
 
-    .btn:hover { 
-      background-color: #0873c4; 
-    }
-
-    .username {
-      color: #0969da;
-      text-decoration: none;
-      font-weight: 600;
-    }
+    .username { color: #0969da; text-decoration: none; font-weight: 600; }
   </style>
 </head>
 <body>
 
-  <div class="card">
+  <div id="loading">Iniciando panel seguro...</div>
+
+  <div class="card" id="dashboard-card">
     <h1>💻 Panel de Control</h1>
-    <p>Monitoreo de actividad y gestión de usuarios.</p>
+    <p>Sesión activa para: <strong id="display-name">...</strong></p>
 
     <div class="table-container">
       <table class="user-table">
@@ -132,33 +79,80 @@
           </tr>
         </thead>
         <tbody>
+          <!-- Fila del usuario REAL logueado -->
           <tr>
-            <td><a href="#" class="username">cristian.jhon.aguilar35a@gmail.com</a></td>
-            <td>Propietario</td>
+            <td>
+              <div class="user-cell">
+                <img id="user-avatar" src="" class="avatar-mini" alt="">
+                <a href="#" id="user-email-link" class="username">Cargando...</a>
+              </div>
+            </td>
+            <td>Administrador</td>
             <td><span class="status-badge status-active">Activo</span></td>
-            <td>Hace 2 min</td>
+            <td>Ahora mismo</td>
           </tr>
+          <!-- Filas de ejemplo estáticas -->
           <tr>
-            <td><a href="#" class="username">@dev_ux</a></td>
+            <td>
+              <div class="user-cell">
+                <img src="https://github.com" class="avatar-mini">
+                <a href="#" class="username">@dev_ux</a>
+              </div>
+            </td>
             <td>Mantenedor</td>
             <td><span class="status-badge status-active">Activo</span></td>
             <td>Ayer</td>
-          </tr>
-          <tr>
-            <td><a href="#" class="username">@new_member</a></td>
-            <td>Colaborador</td>
-            <td><span class="status-badge status-pending">Pendiente</span></td>
-            <td>-</td>
           </tr>
         </tbody>
       </table>
     </div>
 
     <div class="buttons">
-      <a href="index.html" class="btn">Volver al inicio</a>
+      <a href="index.html" class="btn">Inicio</a>
+      <button onclick="logout()" class="btn btn-logout">Cerrar sesión</button>
     </div>
   </div>
 
+  <script>
+    let auth0 = null;
+
+    async function initDashboard() {
+      // 1. Configuración con tus datos reales
+      auth0 = await createAuth0Client({
+        domain: "://auth0.com",
+        clientId: "dnP3foqFuc4OAaWe2LNst79GIUYH5qd5"
+      });
+
+      // 2. Comprobar si está logueado
+      const isAuthenticated = await auth0.isAuthenticated();
+      if (!isAuthenticated) {
+        window.location.href = 'https://cristian2024-ops.github.io/login.html';
+        return;
+      }
+
+      // 3. Obtener datos del usuario
+      const user = await auth0.getUser();
+
+      // 4. Actualizar la interfaz
+      document.getElementById('display-name').textContent = user.name || user.nickname;
+      document.getElementById('user-email-link').textContent = user.email;
+      document.getElementById('user-avatar').src = user.picture;
+
+      // 5. Mostrar el dashboard
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('dashboard-card').style.display = 'block';
+    }
+
+    function logout() {
+      auth0.logout({
+        logoutParams: {
+          returnTo: "https://cristian2024-ops.github.io/login.html"
+        }
+      });
+    }
+
+    window.onload = initDashboard;
+  </script>
+
 </body>
 </html>
-  
