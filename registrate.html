@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - Mi Web</title>
-    <!-- Iconos para los botones -->
+    <!-- FontAwesome corregido -->
     <link rel="stylesheet" href="https://cloudflare.com">
+    <!-- SDK de Auth0 -->
+    <script src="https://auth0.com"></script>
     <style>
         /* Estilos Globales Compartidos */
         body {
@@ -27,27 +29,13 @@
             box-shadow: 0 8px 24px rgba(140, 149, 159, 0.1);
             width: 90%;
             max-width: 340px; 
+            box-sizing: border-box;
         }
 
-        h1 { 
-            font-size: 24px;
-            text-align: center;
-            margin-bottom: 20px;
-            font-weight: 400;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        label {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: -10px;
-        }
-
+        h1 { font-size: 24px; text-align: center; margin-bottom: 20px; font-weight: 400; }
+        form { display: flex; flex-direction: column; gap: 15px; }
+        label { font-size: 14px; font-weight: 600; margin-bottom: -10px; }
+        
         input {
             padding: 8px 12px;
             font-size: 14px;
@@ -74,111 +62,84 @@
             border-radius: 6px;
             cursor: pointer;
             margin-top: 10px;
-            transition: background 0.2s;
         }
 
-        .btn-submit:hover {
-            background-color: #2c974b;
-        }
-
-        /* --- NUEVOS ESTILOS: REGISTRO SOCIAL --- */
         .divider {
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin: 20px 0;
-            color: #57606a;
-            font-size: 12px;
+            display: flex; align-items: center; text-align: center;
+            margin: 20px 0; color: #57606a; font-size: 12px;
         }
-
-        .divider::before, .divider::after {
-            content: '';
-            flex: 1;
-            border-bottom: 1px solid #d0d7de;
-        }
-
+        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #d0d7de; }
         .divider:not(:empty)::before { margin-right: .5em; }
         .divider:not(:empty)::after { margin-left: .5em; }
 
-        .social-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        .social-group { display: flex; flex-direction: column; gap: 10px; }
 
         .btn-social {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            border-radius: 6px;
-            text-decoration: none;
-            color: #24292f;
-            border: 1px solid #d0d7de;
-            background-color: #ffffff;
-            transition: background-color 0.2s;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            padding: 8px; font-size: 14px; font-weight: 500; border-radius: 6px;
+            text-decoration: none; color: #24292f; border: 1px solid #d0d7de;
+            background-color: #ffffff; cursor: pointer;
         }
+        .btn-social:hover { background-color: #f3f4f6; }
 
-        .btn-social:hover {
-            background-color: #f3f4f6;
-        }
-
-        /* Colores sutiles para los iconos */
         .fa-google { color: #DB4437; }
         .fa-github { color: #24292f; }
-        .fa-discord { color: #5865F2; }
 
-        .footer-link {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #57606a;
-        }
-
-        .footer-link a {
-            color: #0969da;
-            text-decoration: none;
-        }
+        .footer-link { text-align: center; margin-top: 20px; font-size: 14px; color: #57606a; }
+        .footer-link a { color: #0969da; text-decoration: none; }
     </style>
 </head>
 <body>
     <div class="card">
         <h1>📝 Crear cuenta</h1>
         
-        <form onsubmit="alert('¡Cuenta creada! (Simulación)'); window.location.href='login.html'; return false;">
+        <form onsubmit="alert('Para registro con email necesitas configurar el Database Connection en Auth0. ¡Prueba los botones sociales!'); return false;">
             <label>Nombre completo</label>
             <input type="text" placeholder="Ej: Octocat" required>
-            
             <label>Correo electrónico</label>
             <input type="email" placeholder="nombre@ejemplo.com" required>
-            
             <label>Contraseña</label>
             <input type="password" placeholder="Mínimo 8 caracteres" required>
-            
             <button type="submit" class="btn-submit">Crear mi cuenta</button>
         </form>
 
-        <!-- SECCIÓN DE REGISTRO SOCIAL -->
         <div class="divider">O regístrate con</div>
 
         <div class="social-group">
-            <a href="#" class="btn-social" onclick="alert('Conectando con Google...')">
+            <button class="btn-social" onclick="signup('google-oauth2')">
                 <i class="fab fa-google"></i> Google
-            </a>
-            <a href="#" class="btn-social" onclick="alert('Conectando con GitHub...')">
+            </button>
+            <button class="btn-social" onclick="signup('github')">
                 <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="#" class="btn-social" onclick="alert('Conectando con Discord...')">
-                <i class="fab fa-discord"></i> Discord
-            </a>
+            </button>
         </div>
         
         <p class="footer-link">
             ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>
         </p>
     </div>
+
+    <script>
+        let auth0 = null;
+
+        async function initAuth0() {
+            auth0 = await createAuth0Client({
+                domain: "://auth0.com",
+                clientId: "dnP3foqFuc4OAaWe2LNst79GIUYH5qd5"
+            });
+        }
+
+        async function signup(provider) {
+            await auth0.loginWithRedirect({
+                authorizationParams: {
+                    connection: provider,
+                    redirect_uri: "https://github.io",
+                    screen_hint: "signup" // Esto le indica a Auth0 que muestre la pantalla de registro
+                }
+            });
+        }
+
+        window.onload = initAuth0;
+    </script>
 </body>
 </html>
