@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión - Mi Web</title>
     <!-- Iconos corregidos -->
-    <link rel="stylesheet" href="https://cloudflare.com">
-    <!-- SDK de Auth0 (Obligatorio para que funcione el script) -->
-    <script src="https://auth0.com"></script>
+    <link rel="stylesheet" href="https://cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- SDK de Auth0 corregido -->
+    <script src="https://auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
     
     <style>
         /* Base y Tipografía */
@@ -32,7 +32,7 @@
             padding: 20px;
             width: 300px;
             box-shadow: 0 8px 24px rgba(140, 149, 159, 0.1);
-            box-sizing: border-box; /* Asegura que el ancho sea exacto */
+            box-sizing: border-box;
         }
 
         form { display: flex; flex-direction: column; gap: 15px; }
@@ -43,7 +43,9 @@
         .btn-primary {
             background-color: #2da44e; color: white; border: 1px solid rgba(27, 31, 36, 0.15);
             padding: 6px 16px; font-weight: 600; font-size: 14px; border-radius: 6px; cursor: pointer;
+            border: none; transition: 0.2s;
         }
+        .btn-primary:hover { background-color: #2c974b; }
 
         .divider { display: flex; align-items: center; text-align: center; margin: 15px 0; color: #57606a; font-size: 12px; }
         .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid #d0d7de; }
@@ -54,7 +56,7 @@
         .btn-social {
             display: flex; align-items: center; justify-content: center; gap: 10px; padding: 8px;
             font-size: 13px; font-weight: 500; border-radius: 6px; text-decoration: none; color: #24292f;
-            border: 1px solid #d0d7de; background-color: #ffffff; cursor: pointer;
+            border: 1px solid #d0d7de; background-color: #ffffff; cursor: pointer; transition: 0.2s;
         }
         .btn-social:hover { background-color: #f3f4f6; }
         .fa-google { color: #DB4437; }
@@ -72,7 +74,8 @@
     <h1>🔐 Ingresar</h1>
 
     <div class="card">
-        <form onsubmit="alert('Esta función requiere backend. Usa los botones de abajo.'); return false;">
+        <!-- FORMULARIO CORREGIDO: Ahora llama a login() de Auth0 -->
+        <form onsubmit="login(); return false;">
             <label>Correo electrónico</label>
             <input type="email" placeholder="nombre@ejemplo.com" required>
             <label>Contraseña</label>
@@ -99,33 +102,39 @@
     <script>
         let auth0 = null;
 
-        // 1. Configuración con tus datos reales
         async function initAuth0() {
             auth0 = await createAuth0Client({
-                domain: "dev-2i7nz3hw5y4ob0yb.us.auth0.com", // Tu dominio real
-                clientId: "dnP3foqFuc4OAaWe2LNst79GIUYH5qd5"   // Tu ID real
+                domain: "dev-2i7nz3hw5y4ob0yb.us.auth0.com",
+                clientId: "dnP3foqFuc4OAaWe2LNst79GIUYH5qd5"
             });
 
             const query = window.location.search;
             if (query.includes("code=") && query.includes("state=")) {
                 await auth0.handleRedirectCallback();
-                window.location.href = 'https://github.io';
+                window.location.href = 'https://github.io'; 
             }
 
             const isAuthenticated = await auth0.isAuthenticated();
             if (isAuthenticated) {
-                window.location.href = 'https://github.io';
+                // Aquí puedes poner la página a la que quieres que entren al loguearse
+                window.location.href = 'https://cristian2024-ops.github.io/dashboard.html';
             }
         }
 
-        // 2. Función corregida para redirigir a tu GitHub Pages
+        // Función unificada para Login (Email o Social)
         async function login(provider) {
-            await auth0.loginWithRedirect({
+            const options = {
                 authorizationParams: {
-                    connection: provider,
                     redirect_uri: "https://github.io"
                 }
-            });
+            };
+            
+            // Si hay un proveedor (Google/GitHub), lo añade
+            if (provider) {
+                options.authorizationParams.connection = provider;
+            }
+
+            await auth0.loginWithRedirect(options);
         }
 
         window.onload = initAuth0;
