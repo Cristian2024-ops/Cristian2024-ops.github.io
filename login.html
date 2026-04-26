@@ -103,41 +103,57 @@
         let auth0 = null;
 
         async function initAuth0() {
-            auth0 = await createAuth0Client({
-                domain: "dev-2i7nz3hw5y4ob0yb.us.auth0.com",
-                clientId: "dnP3foqFuc4OAaWe2LNst79GIUYH5qd5"
-            });
+            try {
+                // Bloqueamos el botón visualmente hasta que Auth0 responda
+                document.querySelectorAll('button').forEach(b => b.disabled = true);
 
-            const query = window.location.search;
-            if (query.includes("code=") && query.includes("state=")) {
-                await auth0.handleRedirectCallback();
-                window.location.href = 'https://github.io'; 
-            }
+                auth0 = await createAuth0Client({
+                    domain: "dev-2i7nz3hw5y4ob0yb.us.auth0.com",
+                    clientId: "dnP3foqFuc4OAaWe2LNst79GIUYH5qd5",
+                    authorizationParams: {
+                        redirect_uri: window.location.origin // Detecta si es localhost o tu GitHub Pages
+                    }
+                });
 
-            const isAuthenticated = await auth0.isAuthenticated();
-            if (isAuthenticated) {
-                // Aquí puedes poner la página a la que quieres que entren al loguearse
-                window.location.href = 'https://cristian2024-ops.github.io/dashboard.html';
-            }
-        }
-
-        // Función unificada para Login (Email o Social)
-        async function login(provider) {
-            const options = {
-                authorizationParams: {
-                    redirect_uri: "https://github.io"
+                // Si venimos de Auth0 tras loguearnos, procesamos el resultado
+                const query = window.location.search;
+                if (query.includes("code=") && query.includes("state=")) {
+                    await auth0.handleRedirectCallback();
+                    window.history.replaceState({}, document.title, window.location.pathname);
                 }
-            };
-            
-            // Si hay un proveedor (Google/GitHub), lo añade
-            if (provider) {
-                options.authorizationParams.connection = provider;
-            }
 
-            await auth0.loginWithRedirect(options);
+                // Desbloqueamos los botones cuando todo está listo
+                document.querySelectorAll('button').forEach(b => b.disabled = false);
+
+            } catch (err) {
+                console.error("Fallo al inicializar Auth0:", err);
+            }
         }
 
-        window.onload = initAuth0;
+        async function login(provider) {
+            // Verificación de seguridad por si el SDK no cargó
+            if (!auth0) {
+                alert("Espera un segundo, estamos conectando con el servidor...");
+                return;
+            }
+
+            try {
+                const options = {
+                    authorizationParams: {
+                        redirect_uri: window.location.origin
+                    }
+                };
+                
+                if (provider) options.authorizationParams.connection = provider;
+
+                // ¡Esta es la línea que hace la magia del salto!
+                await auth0.loginWithRedirect(options);
+            } catch (err) {
+                console.error("Error en la redirección:", err);
+            }
+        }
+
+        window.onload = initAuth0
     </script>
 </body>
 </html>
