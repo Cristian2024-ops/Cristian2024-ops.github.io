@@ -78,7 +78,15 @@
         <div id="game-loader" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:5;pointer-events:none;">
             <div id="loader-dot"></div>
         </div>
-        <iframe id="visor" src="" allowfullscreen allow="autoplay; fullscreen; clipboard-write; encrypted-media; picture-in-picture" loading="lazy" style="background:#000" title="Visor de juegos"></iframe>
+        <iframe 
+          id="visor" 
+          src="" 
+          allow="autoplay; fullscreen; clipboard-write; encrypted-media; picture-in-picture; pointer-lock" 
+          sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock"
+          loading="lazy" 
+          style="background:#000; border:none;" 
+          title="Visor de juegos">
+        </iframe>
         <div id="game-error">
             <p id="game-error-msg">No se pudo cargar el juego en el iframe. Puedes abrirlo en una pestaña nueva.</p>
             <div style="display:flex;gap:8px;">
