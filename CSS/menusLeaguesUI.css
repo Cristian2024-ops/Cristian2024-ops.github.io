@@ -1,0 +1,66 @@
+/* ----------------------------------------------------
+   created with http://www.codeandweb.com/texturepacker 
+   ----------------------------------------------------
+   $TexturePacker:SmartUpdate:4f4cdb6c93691c1eb264e1b15085a449:56928a31d040f1e59a3a659dcb90b834:17c2737c03c7444d4eb10d1dfaf207ac$
+   ----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(menusLeaguesUI.png);}
+
+.Big_Blue_Arrow {width:17px; height:27px; background-position: -515px -331px}
+.arrow-down {width:48px; height:37px; background-position: -630px -291px}
+.arrow-up {width:48px; height:37px; background-position: -630px -330px}
+.icon-friends {width:46px; height:54px; background-position: -631px -63px}
+.icon-world {width:61px; height:61px; background-position: -161px -607px}
+.leaderboard-myslot {width:44px; height:70px; background-position: -631px -119px}
+.leaderboard-slot {width:44px; height:70px; background-position: -165px -154px}
+.leagueplace-bronze {width:147px; height:84px; background-position: -165px -520px}
+.leagueplace-gold {width:147px; height:84px; background-position: -528px -447px}
+.leagueplace-others {width:126px; height:59px; background-position: -540px -2px}
+.leagueplace-silver {width:147px; height:84px; background-position: -528px -533px}
+.leagues_icon {width:42px; height:32px; background-position: -165px -226px}
+.leaguestar-bat {width:161px; height:149px; background-position: -214px -2px}
+.leaguestar-bear {width:161px; height:149px; background-position: -377px -2px}
+.leaguestar-crocodile {width:161px; height:149px; background-position: -214px -153px}
+.leaguestar-fly {width:161px; height:149px; background-position: -377px -153px}
+.leaguestar-fox {width:161px; height:149px; background-position: -2px -154px}
+.leaguestar-hunter {width:161px; height:149px; background-position: -2px -305px}
+.leaguestar-kraken {width:161px; height:149px; background-position: -2px -456px}
+.leaguestar-mammoth {width:161px; height:149px; background-position: -165px -369px}
+.leaguestar-panther {width:161px; height:149px; background-position: -314px -520px}
+.leaguestar-wasp {width:161px; height:149px; background-position: -328px -369px}
+.list-prizes-icon {width:157px; height:69px; background-position: -2px -607px}
+.mini-facebook-icon {width:17px; height:21px; background-position: -515px -360px}
+.myleague-myslot {width:38px; height:54px; background-position: -165px -260px}
+.potions_collection {width:210px; height:150px; background-position: -2px -2px}
+.profilepic-empty-small {width:56px; height:56px; background-position: -202px -304px}
+.profilepic-emptygreen-small {width: 56px;height: 56px; background-position: -265px -302px;}
+.tab-selected-country {width:49px; height:48px; background-position: -477px -520px}
+.tab-selected-friends {width:49px; height:48px; background-position: -477px -570px}
+.tab-selected-myleague {width:48px; height:48px; background-position: -630px -191px}
+.tab-selected-world {width:49px; height:48px; background-position: -623px -369px}
+.tab-unselected-country {width:49px; height:48px; background-position: -477px -620px}
+.tab-unselected-friends {width:49px; height:48px; background-position: -528px -619px}
+.tab-unselected-myleague {width:48px; height:48px; background-position: -630px -241px}
+.tab-unselected-world {width:49px; height:48px; background-position: -579px -619px}
+.tabicon-friends {width:21px; height:25px; background-position: -515px -304px}
+.tabicon-myleague {width:24px; height:23px; background-position: -623px -419px}
+.tabicon-world {width:25px; height:24px; background-position: -491px -494px}
+.topbar-country {width:88px; height:94px; background-position: -540px -159px}
+.topbar-country-profilepic {width:60px; height:60px; background-position: -329px -304px}
+.topbar-friends {width:89px; height:94px; background-position: -540px -63px}
+.topbar-friends-profilepic {width:60px; height:60px; background-position: -391px -304px}
+.topbar-myleague {width:88px; height:94px; background-position: -540px -255px}
+.topbar-myleague-profilepic {width:60px; height:60px; background-position: -453px -304px}
+.topbar-world {width:87px; height:94px; background-position: -534px -351px}
+.topbar-world-profilepic {width:60px; height:60px; background-position: -224px -606px}
+.trophiescollected-slot-country {width:35px; height:35px; background-position: -165px -316px}
+.trophiescollected-slot-friends {width:35px; height:35px; background-position: -491px -383px}
+.trophiescollected-slot-myleague {width:35px; height:35px; background-position: -491px -420px}
+.trophiescollected-slot-white {width:35px; height:35px; background-position: -491px -457px}
+.trophiescollected-slot-world {width:35px; height:35px; background-position: -630px -619px}
