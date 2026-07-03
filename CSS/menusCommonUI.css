@@ -1,0 +1,83 @@
+/* ----------------------------------------------------
+   created with http://www.codeandweb.com/texturepacker 
+   ----------------------------------------------------
+   $TexturePacker:SmartUpdate:2e2b36e2d19a01de6085b85ab2cdf292:951ee09175b44969f22321f25776016f:3c2b9de127f2cf943644a584d6c4b2db$
+   ----------------------------------------------------
+
+   usage: <span class="{-spritename-} sprite"></span>
+
+   replace {-spritename-} with the sprite you like to use
+
+*/
+
+.sprite-common {display:inline-block; overflow:hidden; background-repeat: no-repeat;background-image:url(menusCommonUI.png);}
+
+.Coin-Number-Frame {width:128px; height:43px; background-position: -806px -152px}
+.Coins_L {width:185px; height:133px; background-position: -737px -374px}
+.Coins_M {width:136px; height:110px; background-position: -585px -549px}
+.Coins_S {width:82px; height:76px; background-position: -638px -661px}
+.Coins_XL {width:200px; height:152px; background-position: -523px -395px}
+.Coins_XS {width:58px; height:69px; background-position: -884px -509px}
+.Coins_XXL {width:245px; height:161px; background-position: -245px -650px}
+.DNA_L {width:195px; height:160px; background-position: -737px -212px}
+.DNA_M {width:149px; height:147px; background-position: -245px -813px}
+.DNA_S {width:146px; height:136px; background-position: -396px -813px}
+.DNA_XL {width:212px; height:181px; background-position: -523px -212px}
+.DNA_XS {width:146px; height:126px; background-position: -544px -796px}
+.DNA_XXL {width:260px; height:192px; background-position: -223px -456px}
+.Skins_Bar {width:50px; height:50px; background-position: -795px -861px}
+.Trophy {width:155px; height:184px; background-position: -366px -243px}
+.Trophy_2 {width:242px; height:206px; background-position: -1px -710px}
+.Trophy_3 {width:308px; height:209px; background-position: -496px -1px}
+.Trophy_4 {width:363px; height:211px; background-position: -1px -243px}
+.achievement_icon {width:55px; height:41px; background-position: -1px -918px}
+.alert_icon {width:144px; height:133px; background-position: -492px -661px}
+.back_button {width:52px; height:52px; background-position: -638px -739px}
+.box_bundle {width:157px; height:153px; background-position: -725px -509px}
+.currency_dna {width:101px; height:86px; background-position: -722px -664px}
+.currency_icon {width:54px; height:51px; background-position: -792px -808px}
+.currency_plusbox {width:34px; height:34px; background-position: -544px -924px}
+.divider {width:3px; height:2px; background-position: -725px -395px}
+.dna_bigicon {width:220px; height:252px; background-position: -1px -456px}
+.exit_button {width:47px; height:47px; background-position: -824px -759px}
+.fb_icon {width:20px; height:36px; background-position: -223px -650px}
+.freecoins_icon {width:55px; height:60px; background-position: -904px -651px}
+.g+_icon {width:36px; height:26px; background-position: -485px -429px}
+.google_icon {width:36px; height:26px; background-position: -485px -457px}
+.icon_no {width:45px; height:45px; background-position: -873px -759px}
+.icon_no_white {width:39px; height:39px; background-position: -58px -918px}
+.icon_reconnect {width:51px; height:47px; background-position: -795px -913px}
+.icon_yes {width:55px; height:44px; background-position: -904px -713px}
+.loading_circle {width:25px; height:24px; background-position: -496px -212px}
+.loading_inside {width:50px; height:50px; background-position: -848px -808px}
+.loading_outside {width:77px; height:77px; background-position: -825px -664px}
+.plus {width:22px; height:22px; background-position: -769px -920px}
+.plus_icon {width:33px; height:33px; background-position: -210px -918px}
+.plus_icon_big {width:37px; height:37px; background-position: -99px -918px}
+.profilepic_guest {width:148px; height:149px; background-position: -806px -1px}
+.progression_empty {width:13px; height:23px; background-position: -485px -522px}
+.progression_full {width:13px; height:23px; background-position: -936px -152px}
+.progression_white {width:13px; height:23px; background-position: -924px -448px}
+.purchase_plus {width:34px; height:34px; background-position: -580px -924px}
+.rush_balls_results {width:493px; height:240px; background-position: -1px -1px}
+.rush_icon {width:98px; height:119px; background-position: -692px -752px}
+.scroller {width:18px; height:13px; background-position: -806px -197px}
+.scroller_transparent {width:18px; height:13px; background-position: -826px -197px}
+.scroller_white {width:18px; height:13px; background-position: -846px -197px}
+.sticker {width:70px; height:69px; background-position: -884px -580px}
+.sticker_green {width:98px; height:96px; background-position: -485px -549px}
+.stretch_darkblue_frame {width:34px; height:35px; background-position: -138px -918px}
+.stretch_g+red_frame {width:34px; height:35px; background-position: -174px -918px}
+.stretch_green_frame {width:34px; height:35px; background-position: -485px -485px}
+.stretch_lightgrey_frame {width:34px; height:35px; background-position: -616px -924px}
+.stretch_orange_frame {width:34px; height:35px; background-position: -652px -924px}
+.stretch_red_frame {width:34px; height:35px; background-position: -920px -759px}
+.stretch_trans_green_frame {width:34px; height:35px; background-position: -900px -806px}
+.stretch_white_frame {width:34px; height:35px; background-position: -900px -843px}
+.stretch_white_green_frame {width:34px; height:35px; background-position: -924px -374px}
+.stretch_whitegrey_frame {width:34px; height:35px; background-position: -924px -411px}
+.stretch_whitegrey_tab {width:29px; height:22px; background-position: -397px -429px}
+.supersonic_icon {width:75px; height:40px; background-position: -692px -920px}
+.tapjoy_icon {width:101px; height:45px; background-position: -692px -873px}
+.twitter_login_icon {width:29px; height:25px; background-position: -366px -429px}
+.whitegrey_tab {width:30px; height:54px; background-position: -792px -752px}
