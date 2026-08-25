@@ -4,11 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Biblioteca de Juegos</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f172a 0%, #111827 30%, #1f2937 100%);
+        }
+
+        .card-juego {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            padding: 0;
+            background: rgba(17, 24, 39, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 14px 30px rgba(15, 23, 42, 0.35);
+        }
+
+        .card-juego__media {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+            background: linear-gradient(135deg, #1d4ed8, #7c3aed);
+        }
+
+        .card-juego__content {
+            padding: 1rem 1rem 1.2rem;
+        }
+
+        .card-juego h3,
+        .card-juego p {
+            margin: 0;
+        }
+
+        .card-juego h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.08rem;
+        }
+
+        .card-juego p {
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+    </style>
     <link rel="stylesheet" href="CSS/estilos-tema.css">
     <link rel="stylesheet" href="CSS/estilos-bb8.css">
     <link rel="stylesheet" href="CSS/estilos-dashboard.css">
     <link href="Assets/favicon.ico" rel="icon">
-    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js">
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
     <script src="JS/auth0-config.js"></script>
     <script src="JS/auth-check.js"></script>
 </head>
@@ -98,142 +141,244 @@
 
     <main class="grid-juegos">
         <div class="card-juego fade-in" data-category="juegos" onclick="lanzar('https://retrogames.cc')" tabindex="0" role="button">
-            <h3>Retro games</h3>
-            <p>Clásico Retro (Emu)</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80" alt="Retro games">
+            <div class="card-juego__content">
+                <h3>Retro games</h3>
+                <p>Clásico Retro (Emu)</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos-io" onclick="lanzar('https://skribbl.io')" tabindex="0" role="button">
-            <h3>Skribbl.io</h3>
-            <p>Dibuja y adivina</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80" alt="Skribbl.io">
+            <div class="card-juego__content">
+                <h3>Skribbl.io</h3>
+                <p>Dibuja y adivina</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos-io" onclick="lanzar('https://Diep.io')" tabindex="0" role="button">
-            <h3>Diep.io</h3>
-            <p>Batalla de tanques</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=900&q=80" alt="Diep.io">
+            <div class="card-juego__content">
+                <h3>Diep.io</h3>
+                <p>Batalla de tanques</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="fnf-mods" onclick="lanzar('https://friday-nightfunkin.io/friday-night-funkin.embed')" tabindex="0" role="button">
-            <h3>FNF (PC)</h3>
-            <p>Friday night funkin es una gran lista de retos de rap</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=900&q=80" alt="FNF">
+            <div class="card-juego__content">
+                <h3>FNF (PC)</h3>
+                <p>Friday night funkin es una gran lista de retos de rap</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos" onclick="lanzar('https://play.tetris.com/')" tabindex="0" role="button">
-            <h3>Tetris</h3>
-            <p>Un juego de reacomodar los bloques hasta el final</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80" alt="Tetris">
+            <div class="card-juego__content">
+                <h3>Tetris</h3>
+                <p>Un juego de reacomodar los bloques hasta el final</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos-io" onclick="lanzar('http://slither.com/io')" tabindex="0" role="button">
-            <h3>Slither.io</h3>
-            <p>Una serpiente que debe comer puntos brillantes para crecer y bloquear a otros jugadores</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="Slither.io">
+            <div class="card-juego__content">
+                <h3>Slither.io</h3>
+                <p>Una serpiente que debe comer puntos brillantes para crecer y bloquear a otros jugadores</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos-io" onclick="lanzar('https://Agar.io')" tabindex="0" role="button">
-            <h3>Agar.io</h3>
-            <p>Una célula que come a otras células más pequeñas (no funciona)</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=900&q=80" alt="Agar.io">
+            <div class="card-juego__content">
+                <h3>Agar.io</h3>
+                <p>Una célula que come a otras células más pequeñas (no funciona)</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos-io" onclick="lanzar('https://venge.io/')" tabindex="0" role="button">
-            <h3>Venge.io</h3>
-            <p>Un juego de disparos</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80" alt="Venge.io">
+            <div class="card-juego__content">
+                <h3>Venge.io</h3>
+                <p>Un juego de disparos</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos-io" onclick="lanzar('https://krunker.io/')" tabindex="0" role="button">
-            <h3>Krunker.io</h3>
-            <p>Un juego de disparos muy bueno</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1528819622761-6bcf9d7d53f9?auto=format&fit=crop&w=900&q=80" alt="Krunker.io">
+            <div class="card-juego__content">
+                <h3>Krunker.io</h3>
+                <p>Un juego de disparos muy bueno</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="fnf-mods" onclick="lanzar('https://fnf-2.io/fnf-vs-indie-cross')" tabindex="0" role="button">
-            <h3>FNF Indie Cross</h3>
-            <p>Fase de prueba</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80" alt="FNF Indie Cross">
+            <div class="card-juego__content">
+                <h3>FNF Indie Cross</h3>
+                <p>Fase de prueba</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="geometry-dash" onclick="lanzar('https://dashmetry.1games.io')" tabindex="0" role="button">
-            <h3>Geometry Dash (Dashmetry)</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Geometry Dash">
+            <div class="card-juego__content">
+                <h3>Geometry Dash (Dashmetry)</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos-io troll-games" onclick="lanzar('https://trollgames.io/pixel-path.embed')" tabindex="0" role="button">
-            <h3>Pixel Path</h3>
-            <p>Pixel Path es un juego igual a otro que conozco xd</p>
-            <p>Funcional</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" alt="Pixel Path">
+            <div class="card-juego__content">
+                <h3>Pixel Path</h3>
+                <p>Pixel Path es un juego igual a otro que conozco xd</p>
+                <p>Funcional</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="troll-games" onclick="lanzar('https://playleveldevil.com/play/')" tabindex="0" role="button">
-            <h3>Level Devil</h3>
-            <p>Level Devil es un juego de niveles trolls</p>
-            <p>No funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=900&q=80" alt="Level Devil">
+            <div class="card-juego__content">
+                <h3>Level Devil</h3>
+                <p>Level Devil es un juego de niveles trolls</p>
+                <p>No funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="geometry-dash" onclick="lanzar('https://s.geometrydashgames.io/games/geometry-dash-lite/index.html')" tabindex="0" role="button">
-            <h3>Geometry Dash Lite (PC)</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="Geometry Dash Lite">
+            <div class="card-juego__content">
+                <h3>Geometry Dash Lite (PC)</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="geometry-dash" onclick="lanzar('https://s.geometrydashgames.io/games/geometry-dash-subzero/geometry-dash-subzero.html')" tabindex="0" role="button">
-            <h3>Geometry Dash Subzero</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=900&q=80" alt="Geometry Dash Subzero">
+            <div class="card-juego__content">
+                <h3>Geometry Dash Subzero</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="geometry-dash" onclick="lanzar('https://s.geometrydashgames.io/games/geometry-dash-meltdown/geometry-dash-meltdown.html')" tabindex="0" role="button">
-            <h3>Geometry Dash Meltdown</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=900&q=80" alt="Geometry Dash Meltdown">
+            <div class="card-juego__content">
+                <h3>Geometry Dash Meltdown</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="geometry-dash" onclick="lanzar('https://s.geometrydashgames.io/games/geometry-dash-world/index.html')" tabindex="0" role="button">
-            <h3>Geometry Dash World</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80" alt="Geometry Dash World">
+            <div class="card-juego__content">
+                <h3>Geometry Dash World</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="geometry-dash" onclick="lanzar('https://www.crazygames.com/game/geometry-dash-2-11')" tabindex="0" role="button">
-            <h3>Geometry Dash 2.11</h3>
-            <p>Fase de prueba</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=900&q=80" alt="Geometry Dash 2.11">
+            <div class="card-juego__content">
+                <h3>Geometry Dash 2.11</h3>
+                <p>Fase de prueba</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="geometry-dash" onclick="lanzar('https://www.crazygames.com/game/geometry-dash-2-2')" tabindex="0" role="button">
-            <h3>Geometry Dash 2.2</h3>
-            <p>Fase de prueba</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80" alt="Geometry Dash 2.2">
+            <div class="card-juego__content">
+                <h3>Geometry Dash 2.2</h3>
+                <p>Fase de prueba</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="geometry-dash" onclick="lanzar('https://www.crazygames.com/game/geometry-dash-2-1')" tabindex="0" role="button">
-            <h3>Geometry Dash 2.1</h3>
-            <p>Fase de prueba</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=900&q=80" alt="Geometry Dash 2.1">
+            <div class="card-juego__content">
+                <h3>Geometry Dash 2.1</h3>
+                <p>Fase de prueba</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="carreras" onclick="lanzar('https://smashkarts.io')" tabindex="0" role="button">
-            <h3>Smash Karts</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80" alt="Smash Karts">
+            <div class="card-juego__content">
+                <h3>Smash Karts</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="futball juegos-io" onclick="lanzar('https://www.bumpyball.io')" tabindex="0" role="button">
-            <h3>BumpyBall.io</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=900&q=80" alt="BumpyBall.io">
+            <div class="card-juego__content">
+                <h3>BumpyBall.io</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos-io carreras" onclick="lanzar('https://kartbros.io/753b458b-5283-4b50-9962-c2a9d962cfa3')" tabindex="0" role="button">
-            <h3>Kart Bros.io</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=900&q=80" alt="Kart Bros.io">
+            <div class="card-juego__content">
+                <h3>Kart Bros.io</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos-io futball" onclick="lanzar('https://teamball.io/')" tabindex="0" role="button">
-            <h3>TeamBall.io</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=900&q=80" alt="TeamBall.io">
+            <div class="card-juego__content">
+                <h3>TeamBall.io</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos-io futball" onclick="lanzar('https://www.twoplayergames.org/gameframe/soccer-physics')" tabindex="0" role="button">
-            <h3>Soccer Randoms</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=900&q=80" alt="Soccer Randoms">
+            <div class="card-juego__content">
+                <h3>Soccer Randoms</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="juegos-io futball" onclick="lanzar('https://rocketsoccerderby.gitlab.io/file/')" tabindex="0" role="button">
-            <h3>Rocket Soccer</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=900&q=80" alt="Rocket Soccer">
+            <div class="card-juego__content">
+                <h3>Rocket Soccer</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="fnf-mods" onclick="lanzar('https://fnf.kdata1.com/2026/garcello/desktop/1/')" tabindex="0" role="button">
-            <h3>Friday Night Funkin VS Garcello (PC/Teléfono)</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80" alt="Friday Night Funkin VS Garcello">
+            <div class="card-juego__content">
+                <h3>Friday Night Funkin VS Garcello (PC/Teléfono)</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="fnf-mods" onclick="lanzar('https://fnf.kdata1.com/2024/silly-billy-vs-yourself/1/')" tabindex="0" role="button">
-            <h3>FNF Silly Billy vs Yourself</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80" alt="FNF Silly Billy vs Yourself">
+            <div class="card-juego__content">
+                <h3>FNF Silly Billy vs Yourself</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="fnf-mods" onclick="lanzar('https://fnf.kdata1.com/2026/kapi/2.12/desktop/')" tabindex="0" role="button">
-            <h3>Friday Night Funkin VS KAPI v2</h3>
-            <p>Funciona</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=900&q=80" alt="Friday Night Funkin VS KAPI v2">
+            <div class="card-juego__content">
+                <h3>Friday Night Funkin VS KAPI v2</h3>
+                <p>Funciona</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="fnf-mods" onclick="lanzar('https://kbhgames.com/wp-content/themes/v1/embed.php?url=https%3A%2F%2Ffnf.kdata1.com%2Fimpostor-v4%2F1.5%2F&canonical=https%3A%2F%2Fkbhgames.com%2Fgame%2Ffnf-vs-impostor-among-us-v4&w=960&h=540&pid=137716&thumb=https%3A%2F%2Fkbhgames.com%2Fwp-content%2Fuploads%2F2023%2F01%2FFNF-vs-Impostor-Among-Us-V4-2.webp&title=FNF+vs+Impostor+Among+Us+V4&agelimit=')" tabindex="0" role="button">
-            <h3>FNF vs Impostor Among Us V4 (PC)</h3>
-            <p>Funcional</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=900&q=80" alt="FNF vs Impostor Among Us V4">
+            <div class="card-juego__content">
+                <h3>FNF vs Impostor Among Us V4 (PC)</h3>
+                <p>Funcional</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="fnf-mods" onclick="lanzar('https://kbhgames.com/wp-content/themes/v1/embed.php?url=https%3A%2F%2Ffnf.kdata1.com%2Fcorruption-takeover%2F1%2F&canonical=https%3A%2F%2Fkbhgames.com%2Fgame%2Ffriday-night-funkin-corruption-takeover&w=960&h=540&pid=123734&thumb=https%3A%2F%2Fkbhgames.com%2Fwp-content%2Fuploads%2F2021%2F11%2Ffriday-night-funkin-corruption-takeover.webp&title=FNF+Corruption+Takeover&agelimit=&s=no')" tabindex="0" role="button">
-            <h3>Corrupted mod</h3>
-            <p>Funcional</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80" alt="Corrupted mod">
+            <div class="card-juego__content">
+                <h3>Corrupted mod</h3>
+                <p>Funcional</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="fnf-mods" onclick="lanzar('https://fnf.kdata1.com/2026/vocaloid/1/d/')" tabindex="0" role="button">
-            <h3>FNF Vocaloid Pack</h3>
-            <p>Funcional</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80" alt="FNF Vocaloid Pack">
+            <div class="card-juego__content">
+                <h3>FNF Vocaloid Pack</h3>
+                <p>Funcional</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="fnf-mods" onclick="lanzar('https://kbhgames.com/wp-content/themes/v1/embed.php?url=https%3A%2F%2Ffnf.kdata1.com%2F2026%2Fcorruption-reimagined%2F1.1%2F&canonical=https%3A%2F%2Fkbhgames.com%2Fgame%2Ffriday-night-funkin-corruption-reimagined&w=960&h=540&pid=127276&thumb=https%3A%2F%2Fkbhgames.com%2Fwp-content%2Fuploads%2F2022%2F02%2Ffriday-night-funkin-corruption-reimagined-1.webp&title=Friday+Night+Funkin+Corruption%3A+Reimagined%21&agelimit=&s=no')" tabindex="0" role="button">
-            <h3>Corrupted mod 2</h3>
-            <p>Funcional y mejor</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=80" alt="Corrupted mod 2">
+            <div class="card-juego__content">
+                <h3>Corrupted mod 2</h3>
+                <p>Funcional y mejor</p>
+            </div>
         </div>
         <div class="card-juego fade-in" data-category="fnf-mods" onclick="lanzar('https://kbhgames.com/wp-content/themes/v1/embed.php?url=https%3A%2F%2Ffnf.kdata1.com%2F2026%2Fcorruption%2F1%2F&canonical=https%3A%2F%2Fkbhgames.com%2Fgame%2Ffriday-night-funkin-corruption&w=960&h=540&pid=169105&thumb=https%3A%2F%2Fkbhgames.com%2Fwp-content%2Fuploads%2F2026%2F02%2Ffriday-night-funkin-corruption.webp&title=Friday+Night+Funkin%E2%80%99+Corruption&agelimit=&s=no')" tabindex="0" role="button">
-            <h3>Corrupted mod original</h3>
-            <p>Funcional y mejor que los demás</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80" alt="Corrupted mod original">
+            <div class="card-juego__content">
+                <h3>Corrupted mod original</h3>
+                <p>Funcional y mejor que los demás</p>
+            </div>
         </div>
     </main>
 
@@ -245,40 +390,67 @@
 
     <main class="grid-juegos">
         <div class="card-juego fade-in" data-category="paginas-webs" onclick="lanzar('https://cristianaguilarm-creator.github.io')" tabindex="0" role="button">
-            <h3>Página web de matemáticas</h3>
-            <p>Ehhh zi</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1509228468518-180dd4864904?auto=format&fit=crop&w=900&q=80" alt="Página web de matemáticas">
+            <div class="card-juego__content">
+                <h3>Página web de matemáticas</h3>
+                <p>Ehhh zi</p>
+            </div>
         </div>
         <a href="https://cristian2024-ops.github.io/Juegos/Dino-sin-internet" target="_blank" rel="noopener noreferrer" class="card-juego fade-in" data-category="juegos">
-            <h3>Juego simple</h3>
-            <p>Una recreación del dino sin conexión a Internet (En fase de prueba y desarrollo)</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Juego simple">
+            <div class="card-juego__content">
+                <h3>Juego simple</h3>
+                <p>Una recreación del dino sin conexión a Internet (En fase de prueba y desarrollo)</p>
+            </div>
         </a>
         <div class="card-juego fade-in" data-category="paginas-webs" onclick="lanzar('https://uiverse.io/elements')" tabindex="0" role="button">
-            <h3>UiVerse.io</h3>
-            <p>Es una página para buscar diseños de botones o otras cosas.</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="UiVerse.io">
+            <div class="card-juego__content">
+                <h3>UiVerse.io</h3>
+                <p>Es una página para buscar diseños de botones o otras cosas.</p>
+            </div>
         </div>
         <a href="https://codedex.io" target="_blank" rel="noopener noreferrer" class="card-juego fade-in" data-category="paginas-webs">
-            <h3>CodeDex.io</h3>
-            <p>Es una plataforma de aprendizaje de lenguajes de programación.</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80" alt="CodeDex.io">
+            <div class="card-juego__content">
+                <h3>CodeDex.io</h3>
+                <p>Es una plataforma de aprendizaje de lenguajes de programación.</p>
+            </div>
         </a>
         <a href="https://flowith.io" target="_blank" rel="noopener noreferrer" class="card-juego fade-in" data-category="paginas-webs">
-            <h3>FloWith.io</h3>
-            <p>Una página web de una IA</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="FloWith.io">
+            <div class="card-juego__content">
+                <h3>FloWith.io</h3>
+                <p>Una página web de una IA</p>
+            </div>
         </a>
         <a href="https://huggingface.co/" target="_blank" rel="noopener noreferrer" class="card-juego fade-in" data-category="paginas-webs">
-            <h3>huggingface.co</h3>
-            <p>Una página web de una gran variedad de IAs</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=900&q=80" alt="huggingface.co">
+            <div class="card-juego__content">
+                <h3>huggingface.co</h3>
+                <p>Una página web de una gran variedad de IAs</p>
+            </div>
         </a>
         <a href="https://nepu.to/" target="_blank" rel="noopener noreferrer" class="card-juego fade-in" data-category="paginas-webs">
-            <h3>nepu.to</h3>
-            <p>Una página para ver peliculas, animes, caricaturas o audio libros</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=80" alt="nepu.to">
+            <div class="card-juego__content">
+                <h3>nepu.to</h3>
+                <p>Una página para ver peliculas, animes, caricaturas o audio libros</p>
+            </div>
         </a>
         <a href="https://ankergames.net" target="_blank" rel="noopener noreferrer" class="card-juego fade-in" data-category="paginas-webs">
-            <h3>ankergames.net</h3>
-            <p>Una página para descargar los juegos que te gustan (PC y con posibilidades de viruz)</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1528819622761-6bcf9d7d53f9?auto=format&fit=crop&w=900&q=80" alt="ankergames.net">
+            <div class="card-juego__content">
+                <h3>ankergames.net</h3>
+                <p>Una página para descargar los juegos que te gustan (PC y con posibilidades de viruz)</p>
+            </div>
         </a>
         <a href="https://weebcentral.com/" target="_blank" rel="noopener noreferrer" class="card-juego fade-in" data-category="paginas-webs">
-            <h3>weebcentral.com</h3>
-            <p>Una página para ver hasta los últimos capitulos de tu manga favorito</p>
+            <img class="card-juego__media" src="https://images.unsplash.com/photo-1516321165247-4aa89a48be28?auto=format&fit=crop&w=900&q=80" alt="weebcentral.com">
+            <div class="card-juego__content">
+                <h3>weebcentral.com</h3>
+                <p>Una página para ver hasta los últimos capitulos de tu manga favorito</p>
+            </div>
         </a>
     </main>
     <!-- Scripts principales -->
